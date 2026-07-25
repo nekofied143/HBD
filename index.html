@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
 <title>Happy Birthday</title>
 
@@ -17,8 +17,14 @@ box-sizing:border-box;
 }
 
 body{
-overflow:hidden;
-height:100vh;
+
+margin:0;
+
+overflow-x:hidden;
+overflow-y:auto;
+
+min-height:100vh;
+
 font-family:Poppins,sans-serif;
 background:linear-gradient(135deg,#ff4d6d,#ff9a3c,#6c63ff,#00c6ff);
 background-size:400% 400%;
@@ -41,23 +47,29 @@ z-index:1;
 }
 
 .container{
-position:relative;
-z-index:5;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-height:100%;
-color:white;
-text-align:center;
-padding:20px;
+    position:relative;
+    z-index:5;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    width:100%;
+    min-height:100vh;
+
+    padding:20px;
+    text-align:center;
 }
 
 h1{
-font-family:Pacifico;
-font-size:70px;
-text-shadow:0 0 20px gold;
 animation:zoom 2s infinite alternate;
+font-family:Pacifico,cursive;
+font-size:clamp(2rem,8vw,5rem);
+line-height:1.2;
+padding:0 10px;
+text-shadow:0 0 20px gold;
+word-break:break-word;
 }
 
 @keyframes zoom{
@@ -66,17 +78,21 @@ to{transform:scale(1.05);}
 }
 
 .message{
-margin-top:15px;
-font-size:22px;
-max-width:700px;
-line-height:1.6;
+    margin-top:15px;
+    width:min(90%,700px);
+    font-size:clamp(1rem,3vw,1.4rem);
+    line-height:1.7;
 }
 
 .cake{
-margin-top:40px;
 position:relative;
-width:230px;
-height:220px;
+
+width:min(220px,55vw);
+height:min(220px,55vw);
+
+margin-top:40px;
+
+transform:scale(1);
 }
 
 .layer{
@@ -153,13 +169,14 @@ background:orange;
 }
 
 .balloon{
-position:absolute;
-width:70px;
-height:90px;
+
+width:clamp(35px,8vw,70px);
+height:clamp(45px,10vw,90px);
+
 border-radius:50%;
+position:absolute;
 cursor:pointer;
 animation:float linear infinite;
-transition:.3s;
 }
 
 .balloon::after{
@@ -206,6 +223,52 @@ to{
 transform:scale(2);
 opacity:0;
 }
+}
+/* Tablets */
+
+@media (max-width:768px){
+
+    .cake{
+        transform:scale(.85);
+    }
+
+    .message{
+        padding:0 15px;
+    }
+
+}
+
+/* Phones */
+
+@media (max-width:480px){
+
+    h1{
+        margin-top:20px;
+    }
+
+    .cake{
+        transform:scale(.7);
+        margin-top:20px;
+    }
+
+    .message{
+
+        font-size:16px;
+
+        line-height:1.6;
+
+        padding:0 20px;
+
+    }
+
+    .balloon{
+
+        width:40px;
+
+        height:55px;
+
+    }
+
 }
 
 </style>
@@ -304,7 +367,11 @@ document.body.appendChild(b);
 
 }
 
-for(let i=0;i<20;i++) balloon();
+const balloonCount =
+window.innerWidth < 600 ? 10 : 20;
+
+for(let i=0;i<balloonCount;i++)
+    balloon();
 
 //////////////////////////////////////////////////
 // SPARKLES
@@ -351,7 +418,10 @@ function firework(){
 const x=Math.random()*canvas.width;
 const y=Math.random()*canvas.height*.5;
 
-for(let i=0;i<80;i++){
+const amount =
+window.innerWidth < 600 ? 35 : 80;
+
+for(let i=0;i<amount;i++)
 
 particles.push({
 
