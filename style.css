@@ -355,3 +355,7 @@ h1 {
     }
 
 }
+
+#birthday-message {
+    transition: opacity .8s ease;
+}
