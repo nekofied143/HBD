@@ -62,10 +62,22 @@ async function loadCelebrants() {
 
     try {
 
-        const response =
-           await fetch(
-              "https://script.google.com/macros/s/AKfycbwWtmu9j_umIJG8CYvfgdofzTXSvSlOymlFjD2hf6PoRgBih6Jzn_JUYOSksNe_8QnH/exec"
-              );
+        const response = await fetch(
+    "https://script.google.com/macros/s/AKfycbwWtmu9j_umIJG8CYvfgdofzTXSvSlOymlFjD2hf6PoRgBih6Jzn_JUYOSksNe_8QnH/exec",
+    {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: nickname,
+            birthday: birthday
+        })
+    }
+);
+
+const result = await response.json();
 
         if (!response.ok) {
             throw new Error("Unable to load celebrants.json");
@@ -377,6 +389,67 @@ document.addEventListener("keydown", (event) => {
     ) {
 
         hideModal();
+
+    }
+
+});
+
+/* ==========================================================
+   SAVE CELEBRANT
+========================================================== */
+
+celebrantForm.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const nickname = document.getElementById("nickname").value.trim();
+    const birthday = document.getElementById("birthday").value.trim();
+
+    if (!nickname || !birthday) {
+
+        alert("Please complete all fields.");
+        return;
+
+    }
+
+    try {
+
+        const response = await fetch(
+            "https://script.google.com/macros/s/AKfycbwWtmu9j_umIJG8CYvfgdofzTXSvSlOymlFjD2hf6PoRgBih6Jzn_JUYOSksNe_8QnH/exec",
+            {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: nickname,
+                    birthday: birthday
+                })
+            }
+        );
+
+        const result = await response.json();
+
+        if (result.success) {
+
+            alert("Celebrant added successfully!");
+
+            hideModal();
+
+            loadCelebrants();
+
+        } else {
+
+            alert(result.message);
+
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Unable to save celebrant.");
 
     }
 
