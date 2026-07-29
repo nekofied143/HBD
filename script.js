@@ -62,7 +62,10 @@ async function loadCelebrants() {
 
     try {
 
-        const response = await fetch("celebrants.json");
+        const response =
+           await fetch(
+              "https://script.google.com/macros/s/AKfycbwWtmu9j_umIJG8CYvfgdofzTXSvSlOymlFjD2hf6PoRgBih6Jzn_JUYOSksNe_8QnH/exec"
+              );
 
         if (!response.ok) {
             throw new Error("Unable to load celebrants.json");
