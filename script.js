@@ -2,27 +2,46 @@ let todaysCelebrants = [];
 
 async function loadCelebrants() {
 
-    const response = await fetch("celebrants.json");
-    const celebrants = await response.json();
+    try {
 
-    const today = new Date();
+        const response = await fetch("celebrants.json");
 
-    const todayString =
-        `${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+        if (!response.ok) {
+            throw new Error("Unable to load celebrants.json");
+        }
 
-    todaysCelebrants =
-        celebrants.filter(person => person.birthday === todayString);
+        const celebrants = await response.json();
 
-    updateTitle(todaysCelebrants);
+        const today = new Date();
+
+        const todayString =
+            `${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+
+        todaysCelebrants =
+            celebrants.filter(person => person.birthday === todayString);
+
+        updateTitle(todaysCelebrants);
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("title").textContent =
+            "🎂 Happy Birthday! 🎂";
+
+        document.getElementById("birthday-message").textContent =
+            "Unable to load today's celebrants.";
+
+    }
 
 }
 
-// Change the greeting every 10 seconds
 setInterval(() => {
 
-    if (todaysCelebrants.length > 0) {
-        updateTitle(todaysCelebrants);
-    }
+    if (!todaysCelebrants.length) return;
+
+    document.getElementById("birthday-message").textContent =
+        getRandomMessage();
 
 }, 10000);
 
@@ -100,7 +119,23 @@ function updateTitle(celebrantsToday) {
     title.textContent = `🎉 Happy Birthday, ${formattedNames}! 🎉`;
 
     // Pick ONE random heartfelt message
-    message.textContent = getRandomMessage();
+const message = document.getElementById("birthday-message");
+
+setInterval(() => {
+
+    if (!todaysCelebrants.length) return;
+
+    message.style.opacity = 0;
+
+    setTimeout(() => {
+
+        message.textContent = getRandomMessage();
+        message.style.opacity = 1;
+
+    }, 800);
+
+}, 10000);
+    
 }
 
 loadCelebrants();
