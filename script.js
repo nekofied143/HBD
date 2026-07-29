@@ -324,3 +324,60 @@ function animate() {
 }
 
 animate();
+
+/* ==========================================================
+   ADD CELEBRANT MODAL
+========================================================== */
+
+const addCelebrantBtn = document.getElementById("addCelebrantBtn");
+const celebrantModal = document.getElementById("celebrantModal");
+const closeModal = document.getElementById("closeModal");
+const cancelBtn = document.getElementById("cancelBtn");
+const celebrantForm = document.getElementById("celebrantForm");
+
+// Open modal
+addCelebrantBtn.addEventListener("click", () => {
+
+    celebrantModal.classList.add("show");
+
+    document.getElementById("nickname").focus();
+
+});
+
+// Close modal
+function hideModal() {
+
+    celebrantModal.classList.remove("show");
+
+    celebrantForm.reset();
+
+}
+
+// X button
+closeModal.addEventListener("click", hideModal);
+
+// Cancel button
+cancelBtn.addEventListener("click", hideModal);
+
+// Click outside modal
+celebrantModal.addEventListener("click", (event) => {
+
+    if (event.target === celebrantModal) {
+        hideModal();
+    }
+
+});
+
+// ESC key
+document.addEventListener("keydown", (event) => {
+
+    if (
+        event.key === "Escape" &&
+        celebrantModal.classList.contains("show")
+    ) {
+
+        hideModal();
+
+    }
+
+});
