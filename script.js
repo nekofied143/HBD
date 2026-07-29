@@ -73,21 +73,6 @@ function updateTitle(celebrantsToday) {
 
 }
 
-loadCelebrants();
-
-/* ==========================================================
-   BALLOONS
-========================================================== */
-
-const colors = [
-    "#ff4d6d",
-    "#ffbe0b",
-    "#00bbf9",
-    "#8338ec",
-    "#06d6a0",
-    "#fb5607"
-];
-
 /* ==========================================================
    RANDOM HEARTFELT MESSAGES
 ========================================================== */
@@ -113,6 +98,21 @@ const birthdayMessages = [
     "Every birthday is a fresh beginning. May this year be your happiest and most successful yet.",
     "May today be the start of another year filled with love, peace, and unforgettable memories.",
     "Happy Birthday! May your life continue to overflow with happiness, success, and abundant blessings."
+];
+
+loadCelebrants();
+
+/* ==========================================================
+   BALLOONS
+========================================================== */
+
+const colors = [
+    "#ff4d6d",
+    "#ffbe0b",
+    "#00bbf9",
+    "#8338ec",
+    "#06d6a0",
+    "#fb5607"
 ];
 
 function createBalloon() {
