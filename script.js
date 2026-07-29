@@ -402,8 +402,11 @@ celebrantForm.addEventListener("submit", async (e) => {
 
     e.preventDefault();
 
-    const nickname = document.getElementById("nickname").value.trim();
-    const birthday = document.getElementById("birthday").value.trim();
+    const nickname =
+        document.getElementById("nickname").value.trim();
+
+    const birthday =
+        document.getElementById("birthday").value.trim();
 
     if (!nickname || !birthday) {
 
@@ -414,18 +417,18 @@ celebrantForm.addEventListener("submit", async (e) => {
 
     try {
 
+        // Create form data
+        const formData = new URLSearchParams();
+
+        formData.append("name", nickname);
+        formData.append("birthday", birthday);
+
+        // Send to Google Apps Script
         const response = await fetch(
             "https://script.google.com/macros/s/AKfycbwWtmu9j_umIJG8CYvfgdofzTXSvSlOymlFjD2hf6PoRgBih6Jzn_JUYOSksNe_8QnH/exec",
             {
                 method: "POST",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    name: nickname,
-                    birthday: birthday
-                })
+                body: formData
             }
         );
 
@@ -437,6 +440,7 @@ celebrantForm.addEventListener("submit", async (e) => {
 
             hideModal();
 
+            // Reload the celebrants
             loadCelebrants();
 
         } else {
