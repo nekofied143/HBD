@@ -42,6 +42,15 @@ loadCelebrants();
    BALLOONS
 ========================================================== */
 
+const colors = [
+    "#ff4d6d",
+    "#ffbe0b",
+    "#00bbf9",
+    "#8338ec",
+    "#06d6a0",
+    "#fb5607"
+];
+
 function createBalloon() {
 
     const balloon = document.createElement("div");
