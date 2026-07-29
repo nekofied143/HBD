@@ -54,6 +54,11 @@ const birthdayMessages = [
     "Happy Birthday! May your life continue to overflow with happiness, success, and abundant blessings."
 ];
 
+function getRandomMessage() {
+    return birthdayMessages[
+        Math.floor(Math.random() * birthdayMessages.length)
+    ];
+}
 
 function updateTitle(celebrantsToday) {
 
@@ -95,11 +100,7 @@ function updateTitle(celebrantsToday) {
     title.textContent = `🎉 Happy Birthday, ${formattedNames}! 🎉`;
 
     // Pick ONE random heartfelt message
-    const randomMessage =
-        birthdayMessages[Math.floor(Math.random() * birthdayMessages.length)];
-
-    message.textContent = randomMessage;
-
+    message.textContent = getRandomMessage();
 }
 
 loadCelebrants();
