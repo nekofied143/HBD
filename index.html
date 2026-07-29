@@ -31,12 +31,10 @@
     <!-- Main Content -->
     <main class="container">
 
-        <!-- Birthday Title -->
         <h1 id="title">
             🎂 Happy Birthday! 🎂
         </h1>
 
-        <!-- Random Birthday Message -->
         <div
             class="message"
             id="birthday-message"
@@ -47,32 +45,26 @@
         <!-- Birthday Cake -->
         <div class="cake">
 
-            <!-- Bottom Layer -->
             <div class="layer layer1">
                 <div class="icing"></div>
             </div>
 
-            <!-- Middle Layer -->
             <div class="layer layer2">
                 <div class="icing"></div>
             </div>
 
-            <!-- Top Layer -->
             <div class="layer layer3">
 
                 <div class="icing"></div>
 
-                <!-- Candle 1 -->
                 <div class="candle c1">
                     <div class="flame"></div>
                 </div>
 
-                <!-- Candle 2 -->
                 <div class="candle c2">
                     <div class="flame"></div>
                 </div>
 
-                <!-- Candle 3 -->
                 <div class="candle c3">
                     <div class="flame"></div>
                 </div>
@@ -83,7 +75,100 @@
 
     </main>
 
-    <!-- JavaScript -->
+    <!-- Floating Add Button -->
+    <button
+        id="addCelebrantBtn"
+        class="fab"
+        title="Add Celebrant"
+        aria-label="Add Celebrant"
+    >
+        +
+    </button>
+
+    <!-- Modal -->
+    <div
+        id="celebrantModal"
+        class="modal"
+    >
+
+        <div class="modal-card">
+
+            <div class="modal-header">
+
+                <h2>Add Celebrant</h2>
+
+                <button
+                    id="closeModal"
+                    class="close-btn"
+                    type="button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <form id="celebrantForm">
+
+                <div class="form-group">
+
+                    <label for="nickname">
+                        Nickname
+                    </label>
+
+                    <input
+                        id="nickname"
+                        type="text"
+                        maxlength="30"
+                        placeholder="e.g. John"
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="birthday">
+                        Birthday (MM-DD)
+                    </label>
+
+                    <input
+                        id="birthday"
+                        type="text"
+                        placeholder="07-29"
+                        maxlength="5"
+                        pattern="^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+                        required
+                    >
+
+                </div>
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        id="cancelBtn"
+                        class="btn-secondary"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        Save Celebrant
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Script -->
     <script src="script.js"></script>
 
 </body>
