@@ -2,22 +2,25 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
     >
 
-    <title>Happy Birthday</title>
+    <title>🎉 Happy Birthday 🎂</title>
 
     <!-- Google Fonts -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600;700&display=swap"
         rel="stylesheet"
     >
 
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -26,39 +29,50 @@
     <canvas id="fireworks"></canvas>
 
     <!-- Main Content -->
-    <div class="container">
+    <main class="container">
 
-        <h1 id="title"></h1>
+        <!-- Birthday Title -->
+        <h1 id="title">
+            🎂 Happy Birthday! 🎂
+        </h1>
 
-        <div class="message">
-            May your special day be filled with happiness,
-            love, laughter, wonderful surprises,
-            and countless blessings!
+        <!-- Random Birthday Message -->
+        <div
+            class="message"
+            id="birthday-message"
+        >
+            Loading birthday wishes...
         </div>
 
         <!-- Birthday Cake -->
         <div class="cake">
 
+            <!-- Bottom Layer -->
             <div class="layer layer1">
                 <div class="icing"></div>
             </div>
 
+            <!-- Middle Layer -->
             <div class="layer layer2">
                 <div class="icing"></div>
             </div>
 
+            <!-- Top Layer -->
             <div class="layer layer3">
 
                 <div class="icing"></div>
 
+                <!-- Candle 1 -->
                 <div class="candle c1">
                     <div class="flame"></div>
                 </div>
 
+                <!-- Candle 2 -->
                 <div class="candle c2">
                     <div class="flame"></div>
                 </div>
 
+                <!-- Candle 3 -->
                 <div class="candle c3">
                     <div class="flame"></div>
                 </div>
@@ -67,9 +81,9 @@
 
         </div>
 
-    </div>
+    </main>
 
-    <!-- Script -->
+    <!-- JavaScript -->
     <script src="script.js"></script>
 
 </body>
