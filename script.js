@@ -1,20 +1,42 @@
-/* ==========================================================
-   CONFIGURATION
-========================================================== */
+async function loadCelebrants() {
 
-const celebrant = "Mama Vicky";
+    const response = await fetch("celebrants.json");
+    const celebrants = await response.json();
 
-const colors = [
-    "#ff4d6d",
-    "#ffbe0b",
-    "#00bbf9",
-    "#8338ec",
-    "#06d6a0",
-    "#fb5607"
-];
+    const today = new Date();
+    const todayString =
+        `${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
 
-document.getElementById("title").textContent =
-    `🎉 Happy Birthday, ${celebrant}! 🎉`;
+    const todaysCelebrants =
+        celebrants.filter(person => person.birthday === todayString);
+
+    updateTitle(todaysCelebrants);
+
+}
+
+function updateTitle(celebrantsToday) {
+
+    const title = document.getElementById("title");
+
+    if (celebrantsToday.length === 0) {
+        title.textContent = "🎂 Happy Birthday! 🎂";
+        return;
+    }
+
+    const names = celebrantsToday.map(person => person.name);
+
+    const formatted =
+        names.length === 1
+            ? names[0]
+            : names.length === 2
+                ? names.join(" & ")
+                : `${names.slice(0, -1).join(", ")} & ${names[names.length - 1]}`;
+
+    title.textContent = `🎉 Happy Birthday, ${formatted}! 🎉`;
+
+}
+
+loadCelebrants();
 
 /* ==========================================================
    BALLOONS
