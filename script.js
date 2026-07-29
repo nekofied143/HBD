@@ -1,18 +1,30 @@
+let todaysCelebrants = [];
+
 async function loadCelebrants() {
 
     const response = await fetch("celebrants.json");
     const celebrants = await response.json();
 
     const today = new Date();
+
     const todayString =
         `${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
 
-    const todaysCelebrants =
+    todaysCelebrants =
         celebrants.filter(person => person.birthday === todayString);
 
     updateTitle(todaysCelebrants);
 
 }
+
+// Change the greeting every 10 seconds
+setInterval(() => {
+
+    if (todaysCelebrants.length > 0) {
+        updateTitle(todaysCelebrants);
+    }
+
+}, 10000);
 
 function updateTitle(celebrantsToday) {
 
